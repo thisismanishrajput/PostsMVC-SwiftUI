@@ -12,7 +12,7 @@ struct PostsMVC_SwiftUIApp: App {
     // Compose dependencies and inject into controller
        init() {
            // Configure service locator / DI at startup
-           let networkClient = NetworkClient(baseURL: URL(string: "https://jsonplaceholder.typicode.com")!)
+           let networkClient = NetworkClient(baseURL: URL(string: "https://dummyjson.com/")!)
            
            // add interceptors
            networkClient.addInterceptor(LoggingInterceptor())
@@ -20,12 +20,18 @@ struct PostsMVC_SwiftUIApp: App {
 
            let postService = PostServiceImpl(networkClient: networkClient)
            ServiceLocator.shared.register(service: postService as PostService)
+           
+           let productService = ProductServiceImpl(networkClient: networkClient)
+           ServiceLocator.shared.register(service: productService as ProductService)
        }
 
        var body: some Scene {
            WindowGroup {
-               let controller = PostsController(postService: ServiceLocator.shared.resolve()!)
-               PostsListView(controller: controller)
+//               let controller = PostsController(postService: ServiceLocator.shared.resolve()!)
+//               PostsListView(controller: controller)
+               
+               let controller = ProductController(productService:  ServiceLocator.shared.resolve()!)
+               ProductListView(controller: controller)
            }
        }
 }

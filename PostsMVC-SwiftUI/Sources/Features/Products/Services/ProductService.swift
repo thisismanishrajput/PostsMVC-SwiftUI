@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol ProductService{
+    func fetchProducts() async throws ->ProductResponse
+}
