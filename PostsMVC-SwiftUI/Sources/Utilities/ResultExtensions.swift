@@ -1,8 +1,0 @@
-//
-//  ResultExtensions.swift
-//  PostsMVC-SwiftUI
-//
-//  Created by Manish Singh on 18/11/25.
-//
-
-import Foundation
